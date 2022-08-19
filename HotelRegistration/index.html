@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .first_box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            height: 80px;
+        }
+
+        .headline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            height: 50px;
+            margin-top: 5px;
+            color: white;
+        }
+
+        .information {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            margin-top: 5px;
+            height: auto;
+            font-size: 20px;
+        }
+
+        img {
+            border-radius: 20px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 200px;
+        }
+    </style>
+    <script type="text/javascript">
+        function RegisterClick() {
+            // Alert Without Input
+            var name = document.getElementById("name").value;
+            if (name == "") {
+                alert("Please Fill Your Name!")
+            }
+            var date = document.getElementById("date").value;
+            if (date == "") {
+                alert("Please Select a Date!")
+            }
+            var days = document.getElementById("days").value;
+            if (days == "") {
+                alert("Please Fill Days Detail!")
+            }
+            var person = document.getElementById("person").value;
+            if (person == "") {
+                alert("Please Fill Person Detail!")
+            }
+            var advanceamount = document.getElementById("advance").value;
+            if (advanceamount == "") {
+                alert("Please Pay Advance First!")
+            }
+            var roomselectdelux = document.getElementById('deluxroom');
+            var roomselectsuite = document.getElementById('suiteroom');
+            if (roomselectdelux.checked || roomselectsuite.checked) {
+
+            } else {
+                alert("Please Select Your Room Type!")
+            }
+
+            // model input details
+            document.getElementById("lblName").innerHTML = document.getElementById("name").value;
+            document.getElementById("lblDate").innerHTML = document.getElementById("date").value;
+            document.getElementById("lblDays").innerHTML = document.getElementById("days").value + "&nbsp;Days";
+            document.getElementById("lblPersons").innerHTML = document.getElementById("person").value + "&nbsp;Persons (after 2 person pay extra charge)<br>(1000/- per person)";
+            document.getElementById("lblAdvance").innerHTML = document.getElementById("advance").value + "/-";
+
+            // radio room type
+            var deluxroom = document.getElementById("deluxroom");
+            var suiteroom = document.getElementById("suiteroom");
+            var roomtotal = 0;
+
+
+            if (deluxroom.checked) {
+                document.getElementById("lblRoomtype").innerHTML = "Delux Room 2500/-"
+                roomtotal = 2500;
+            }
+            if (suiteroom.checked) {
+                document.getElementById("lblRoomtype").innerHTML = "Suite Room 4000/-"
+                roomtotal = 4000;
+            }
+
+            // checkbox select 
+            var aclockertotal = 0;
+            var acroom = document.getElementById("acroom");
+            var lockerroom = document.getElementById("lockerroom")
+            if (acroom.checked) {
+                document.getElementById("lblAmenities").innerHTML += `A/C Room 1000/- <br>`
+                aclockertotal += 1000;
+            }
+            if (lockerroom.checked) {
+                document.getElementById("lblAmenities").innerHTML += `Locker Room 300/- <br>`
+                aclockertotal += 300;
+            }
+
+            // Total Bill
+            var Total = 0;
+            Total = roomtotal + aclockertotal;
+            var days = document.getElementById("days").value;
+            Total = Total * days;
+            var person = document.getElementById("person").value;
+            person = person * 1000;
+            person = person - 2000;
+            Total = Total + person
+            document.getElementById("lblBalence").innerHTML = Total + "/-";
+            var Alreadypay = document.getElementById("advance").value;
+            Total = Total - Alreadypay;
+            document.getElementById("lblTotal").innerHTML = Total + "/-";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid mt-1">
+        <div class="first_box">
+            <h2>Hotel Registration</h2>
+        </div>
+        <div class="headline">
+            <h3>Customer Info</h3>
+        </div>
+        <div class="information">
+            <div class="d-flex flex-column">
+                <span class="m-2">Customer Name:</span>
+                <span class="m-2">Check In Date:</span>
+                <span class="m-2">Total No. Of Days:</span>
+                <span class="m-2">Total No. Of Persons:</span>
+            </div>
+            <div class="d-flex flex-column ms-4">
+                <div class="m-2"><span class="m-2"><input type="text" id="name"></span></div>
+                <div class="m-2"><span class="m-2"><input type="date" id="date"></span></div>
+                <div class="m-2"><span class="m-2"><input type="number" id="days"></span></div>
+                <div class="m-2"><span class="m-2"><input type="number" id="person"></span>(after 2 person pay extra
+                    charge)(1000/- per person)</div>
+            </div>
+        </div>
+        <div class="headline">
+            <h3>Select Room Type</h3>
+        </div>
+        <div class="information">
+            <div class="d-flex flex-column justify-content-center w-50">
+                <img src="./images/delux.jpg" height="170" width="200">
+                <div><input type="radio" class="form-check-input" name="roomcheck" id="deluxroom"> <span><b>Delux
+                            Room 2500/-</b></span></div>
+            </div>
+            <div class="d-flex flex-column ms-4">
+                <img src="./images/suite.jpg" height="170" width="200">
+                <div><input type="radio" class="form-check-input" name="roomcheck" id="suiteroom"> <span><b>Suite
+                            Room 4000/-</b></span></div>
+            </div>
+        </div>
+        <div class="headline">
+            <h3>Select Amenities</h3>
+        </div>
+        <div class="information">
+            <div class="d-flex flex-column justify-content-center w-50">
+                <img src="./images/acroom.jpg" height="150" width="190">
+                <div><input type="checkbox" class="form-check-input" name="roomcheck" id="acroom">
+                    <span><b>A/C 1000/-</b></span>
+                </div>
+            </div>
+            <div class="d-flex flex-column ms-4">
+                <img src="./images/locker.jpg" height="150" width="190">
+                <div><input type="checkbox" class="form-check-input" name="roomcheck" id="lockerroom">
+                    <span><b>Locker 300/-</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="headline">
+            <h3>Advance Amount</h3>
+        </div>
+        <div class="information p-4">
+            <span><b>Advance Amount:</b></span> <input type="number" class="ms-4" id="advance">
+            <span id="requireamount" class="m-2"></span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button data-bs-target="#BillSummary" data-bs-toggle="modal" class="btn btn-dark p-2"
+                onclick="RegisterClick()">
+                <h4>Register</h4>
+            </button>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <div class="modal fade" id="BillSummary">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Your Bill Summary</h2>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <dl class="row">
+                                    <dt class="col-3 mt-1">Name:</dt>
+                                    <dd class="col-9 mt-1" id="lblName"></dd>
+                                    <dt class="col-3 mt-1">Date:</dt>
+                                    <dd class="col-9 mt-1" id="lblDate"></dd>
+                                    <dt class="col-3 mt-1">living Days:</dt>
+                                    <dd class="col-9 mt-1" id="lblDays"></dd>
+                                    <dt class="col-3 mt-1">Persons:</dt>
+                                    <dd class="col-9 mt-1" id="lblPersons"></dd>
+                                    <dt class="col-3 mt-1">Room Type:</dt>
+                                    <dd class="col-9 mt-1" id="lblRoomtype"></dd>
+                                    <dt class="col-3 mt-1">Amenities:</dt>
+                                    <dd class="col-9 mt-1" id="lblAmenities"></dd>
+                                    <dt class="col-3 mt-1">Advance Amount:</dt>
+                                    <dd class="col-9 mt-1" id="lblAdvance"></dd>
+                                    <dt class="col-3 mt-1">Total Bill:</dt>
+                                    <dd class="col-9 mt-1" id="lblBalence"></dd>
+                                    <dt class="col-3 mt-1">Pay Bill:</dt>
+                                    <dd class="col-9 mt-1" id="lblTotal"></dd>
+                                </dl>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
