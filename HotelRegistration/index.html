@@ -83,7 +83,7 @@
             document.getElementById("lblDate").innerHTML = document.getElementById("date").value;
             document.getElementById("lblDays").innerHTML = document.getElementById("days").value + "&nbsp;Days";
             document.getElementById("lblPersons").innerHTML = document.getElementById("person").value + "&nbsp;Persons (after 2 person pay extra charge)<br>(1000/- per person)";
-            document.getElementById("lblAdvance").innerHTML = document.getElementById("advance").value + "/-";
+            document.getElementById("lblAdvance").innerHTML = document.getElementById("advance").value + "&#8377;/-";
 
             // radio room type
             var deluxroom = document.getElementById("deluxroom");
@@ -92,11 +92,11 @@
 
 
             if (deluxroom.checked) {
-                document.getElementById("lblRoomtype").innerHTML = "Delux Room 2500/-"
+                document.getElementById("lblRoomtype").innerHTML = "Delux Room &#8377;2500/-"
                 roomtotal = 2500;
             }
             if (suiteroom.checked) {
-                document.getElementById("lblRoomtype").innerHTML = "Suite Room 4000/-"
+                document.getElementById("lblRoomtype").innerHTML = "Suite Room &#8377;4000/-"
                 roomtotal = 4000;
             }
 
@@ -105,11 +105,11 @@
             var acroom = document.getElementById("acroom");
             var lockerroom = document.getElementById("lockerroom")
             if (acroom.checked) {
-                document.getElementById("lblAmenities").innerHTML += `A/C Room 1000/- <br>`
+                document.getElementById("lblAmenities").innerHTML += `A/C Room &#8377;1000/- <br>`
                 aclockertotal += 1000;
             }
             if (lockerroom.checked) {
-                document.getElementById("lblAmenities").innerHTML += `Locker Room 300/- <br>`
+                document.getElementById("lblAmenities").innerHTML += `Locker Room &#8377;300/- <br>`
                 aclockertotal += 300;
             }
 
@@ -122,10 +122,10 @@
             person = person * 1000;
             person = person - 2000;
             Total = Total + person
-            document.getElementById("lblBalence").innerHTML = Total + "/-";
+            document.getElementById("lblBalence").innerHTML = "&#8377;" + Total + "/-";
             var Alreadypay = document.getElementById("advance").value;
             Total = Total - Alreadypay;
-            document.getElementById("lblTotal").innerHTML = Total + "/-";
+            document.getElementById("lblTotal").innerHTML = "&#8377;" + Total + "/-";
         }
     </script>
 </head>
@@ -160,12 +160,12 @@
             <div class="d-flex flex-column justify-content-center w-50">
                 <img src="./images/delux.jpg" height="170" width="200">
                 <div><input type="radio" class="form-check-input" name="roomcheck" id="deluxroom"> <span><b>Delux
-                            Room 2500/-</b></span></div>
+                            Room &#8377;2500/-(1 Day)</b></span></div>
             </div>
             <div class="d-flex flex-column ms-4">
                 <img src="./images/suite.jpg" height="170" width="200">
                 <div><input type="radio" class="form-check-input" name="roomcheck" id="suiteroom"> <span><b>Suite
-                            Room 4000/-</b></span></div>
+                            Room &#8377;4000/-(1 Day)</b></span></div>
             </div>
         </div>
         <div class="headline">
@@ -175,13 +175,13 @@
             <div class="d-flex flex-column justify-content-center w-50">
                 <img src="./images/acroom.jpg" height="150" width="190">
                 <div><input type="checkbox" class="form-check-input" name="roomcheck" id="acroom">
-                    <span><b>A/C 1000/-</b></span>
+                    <span><b>A/C &#8377;1000/-(1 Day)</b></span>
                 </div>
             </div>
             <div class="d-flex flex-column ms-4">
                 <img src="./images/locker.jpg" height="150" width="190">
                 <div><input type="checkbox" class="form-check-input" name="roomcheck" id="lockerroom">
-                    <span><b>Locker 300/-</b></span>
+                    <span><b>Locker &#8377;300/-(1 Day)</b></span>
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@
         </div>
         <div class="information p-4">
             <span><b>Advance Amount:</b></span> <input type="number" class="ms-4" id="advance">
-            <span id="requireamount" class="m-2"></span>
+            <span id="requireamount" class="m-2 text-danger">*For Room Booking Pay Advance Minimum &#8377;1000/- </span>
         </div>
         <div class="d-flex justify-content-center">
             <button data-bs-target="#BillSummary" data-bs-toggle="modal" class="btn btn-dark p-2"
@@ -221,10 +221,10 @@
                                     <dd class="col-9 mt-1" id="lblRoomtype"></dd>
                                     <dt class="col-3 mt-1">Amenities:</dt>
                                     <dd class="col-9 mt-1" id="lblAmenities"></dd>
-                                    <dt class="col-3 mt-1">Advance Amount:</dt>
-                                    <dd class="col-9 mt-1" id="lblAdvance"></dd>
                                     <dt class="col-3 mt-1">Total Bill:</dt>
                                     <dd class="col-9 mt-1" id="lblBalence"></dd>
+                                    <dt class="col-3 mt-1">Advance Amount:</dt>
+                                    <dd class="col-9 mt-1" id="lblAdvance"></dd>
                                     <dt class="col-3 mt-1">Pay Bill:</dt>
                                     <dd class="col-9 mt-1" id="lblTotal"></dd>
                                 </dl>
