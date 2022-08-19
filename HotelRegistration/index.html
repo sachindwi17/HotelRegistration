@@ -127,6 +127,9 @@
             Total = Total - Alreadypay;
             document.getElementById("lblTotal").innerHTML = "&#8377;" + Total + "/-";
         }
+        function OkClick(){
+            alert("Registration Successfull.")
+        }
     </script>
 </head>
 
@@ -230,7 +233,7 @@
                                 </dl>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                                <button class="btn btn-primary" data-bs-dismiss="modal" onclick="OkClick()">OK</button>
                             </div>
                         </div>
                     </div>
